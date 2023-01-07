@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Entry, Item, Items, StockData } from 'src/app/interfaces';
+import { getPriceDiff } from 'src/app/utils';
 
 @Component({
   selector: 'app-stock-table',
@@ -12,6 +13,10 @@ export class StockTableComponent {
   @Input() days: number = 30;
 
   ngOnInit() {
+    this.sortFilterEntries();
+  }
+
+  private sortFilterEntries() {
     const stockItems: Items | undefined = this.stockData?.items;
     if (!stockItems) {
       return;
@@ -31,10 +36,10 @@ export class StockTableComponent {
           index > 0 ? lastEntries[index - 1]?.close : undefined;
 
         const firstDayVar =
-          index > 0 ? this.getDiff(firstEntry.close, close) : undefined;
+          index > 0 ? getPriceDiff(firstEntry.close, close) : undefined;
 
         const prevDayVar = prevDayClose
-          ? this.getDiff(prevDayClose, close)
+          ? getPriceDiff(prevDayClose, close)
           : undefined;
 
         const entry: Entry = {
@@ -49,9 +54,5 @@ export class StockTableComponent {
       },
       []
     );
-  }
-
-  getDiff(basePrice: number, compPrice: number): number {
-    return ((compPrice * 100) / basePrice - 100) / 100;
   }
 }

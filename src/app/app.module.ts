@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { RequestInterceptor } from './config/request.interceptor';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
