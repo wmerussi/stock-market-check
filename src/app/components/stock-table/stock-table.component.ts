@@ -7,32 +7,19 @@ import { getPriceDiff } from 'src/app/utils';
   templateUrl: './stock-table.component.html',
 })
 export class StockTableComponent implements OnInit {
-  @Input() stockData: StockData | undefined;
-  @Input() days: number = 30;
+  @Input() metaCurrency: string = '';
+  @Input() items: Item[] = [];
 
   public entries: Entry[] = [];
-  public currencySymbol: string | undefined;
 
   ngOnInit() {
     this.sortFilterEntries();
-
-    this.currencySymbol = this.stockData?.meta.currency;
   }
 
   private sortFilterEntries() {
-    const stockItems: Items | undefined = this.stockData?.items;
-    if (!stockItems) {
-      return;
-    }
+    const firstItem = this.items[0];
 
-    const itemKeys = Object.values(stockItems);
-    itemKeys.sort((a: Item, b: Item) => a.date_utc - b.date_utc);
-
-    const lastEntries = itemKeys.slice(-this.days);
-    const firstEntry = lastEntries[0];
-    console.log('lastEntries', lastEntries);
-
-    this.entries = lastEntries.reduce(
+    this.entries = this.items.reduce(
       (items: Entry[], item: Item, index: number) => {
         const { close, date } = item;
 
@@ -40,10 +27,10 @@ export class StockTableComponent implements OnInit {
         const dateObj = new Date(year, month, day);
 
         const prevDayClose =
-          index > 0 ? lastEntries[index - 1]?.close : undefined;
+          index > 0 ? this.items[index - 1]?.close : undefined;
 
         const firstDayVar =
-          index > 0 ? getPriceDiff(firstEntry.close, close) : undefined;
+          index > 0 ? getPriceDiff(firstItem.close, close) : undefined;
 
         const prevDayVar = prevDayClose
           ? getPriceDiff(prevDayClose, close)
