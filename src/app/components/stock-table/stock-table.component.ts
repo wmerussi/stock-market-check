@@ -17,17 +17,18 @@ export class StockTableComponent {
       return;
     }
 
-    const itemKeys = Object.keys(stockItems);
-    itemKeys.sort();
+    const itemKeys = Object.values(stockItems);
+    itemKeys.sort((a: Item, b: Item) => a.date_utc - b.date_utc);
 
     const lastEntries = itemKeys.slice(-this.days);
-    const firstEntry = stockItems[lastEntries[0]];
-    let prevEntry: Entry | undefined;
+    const firstEntry = lastEntries[0];
 
     this.entries = lastEntries.reduce(
-      (items: Entry[], itemKey: string, index: number) => {
-        const { close, date_utc } = stockItems[itemKey];
-        const prevDayClose = prevEntry?.close;
+      (items: Entry[], item: Item, index: number) => {
+        const { close, date_utc } = item;
+
+        const prevDayClose =
+          index > 0 ? lastEntries[index - 1]?.close : undefined;
 
         const firstDayVar =
           index > 0 ? this.getDiff(firstEntry.close, close) : undefined;
@@ -44,7 +45,6 @@ export class StockTableComponent {
           prevDayVar,
         };
 
-        prevEntry = entry;
         return items.concat(entry);
       },
       []
