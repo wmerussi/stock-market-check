@@ -1,0 +1,13 @@
+$spaces: (
+  xsmall: 4,
+  small: 8,
+  base: 16,
+  medium: 24,
+  large: 48,
+  xlarge: 72,
+  xxlarge: 108,
+);
+
+@function space($space) {
+  @return #{map-get($spaces, $space)}px;
+}

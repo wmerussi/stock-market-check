@@ -1,0 +1,22 @@
+$grid-breakpoints: (
+  mobile: 320px,
+  tablet: 768px,
+  desktop: 1024px,
+  // xlarge: 1280px,
+) !default;
+
+@mixin media($breakpoint, $width: min) {
+  @if map-has-key($grid-breakpoints, $width) {
+    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+      @media (max-width: (map-get($grid-breakpoints, $width) - 1)) {
+        @content;
+      }
+    }
+  } @else {
+    $mod: if($width == max, 1, 0);
+
+    @media (#{$width}-width: (map-get($grid-breakpoints, $breakpoint) - $mod)) {
+      @content;
+    }
+  }
+}

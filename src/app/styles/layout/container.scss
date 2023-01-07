@@ -1,0 +1,14 @@
+$container-size: 900px;
+
+.container {
+  margin: 0 auto;
+  padding: {
+    left: 8px;
+    right: 8px;
+  }
+
+  @include media(desktop) {
+    width: $container-size;
+    max-width: $container-size;
+  }
+}

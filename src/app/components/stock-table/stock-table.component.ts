@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Entry, Item, Items, StockData } from 'src/app/interfaces';
 import { getPriceDiff } from 'src/app/utils';
 
@@ -6,7 +6,7 @@ import { getPriceDiff } from 'src/app/utils';
   selector: 'app-stock-table',
   templateUrl: './stock-table.component.html',
 })
-export class StockTableComponent {
+export class StockTableComponent implements OnInit {
   @Input() stockData: StockData | undefined;
   @Input() days: number = 30;
 

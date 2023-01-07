@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { StockData } from './interfaces';
 
@@ -6,7 +6,7 @@ import { StockData } from './interfaces';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public stockData: StockData | undefined;
 
   constructor(private service: AppService) {}

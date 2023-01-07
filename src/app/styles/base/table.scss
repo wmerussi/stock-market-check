@@ -1,0 +1,26 @@
+table {
+  margin: 0 auto;
+  text-align: left;
+}
+
+tbody {
+  tr {
+    &:nth-child(odd) {
+      color: color(light, dark);
+    }
+  }
+}
+
+tr {
+  border-bottom: 1px solid color(dark, light);
+}
+
+th,
+td {
+  padding: space(base) 0;
+
+  + th,
+  + td {
+    padding-left: space(medium);
+  }
+}
