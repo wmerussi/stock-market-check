@@ -10,12 +10,12 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>4</td>
-      <td>03/01/2021</td>
-      <td>R$ 1,05</td>
-      <td>-4,54%</td>
-      <td>5%</td>
+    <tr *ngFor="let entry of entries">
+      <td>{{ entry.id }}</td>
+      <td>{{ entry.date_utc }}</td>
+      <td>{{ entry.close }}</td>
+      <td>{{ entry.firstDayVar || "-" }}</td>
+      <td>{{ entry.prevDayVar || "-" }}</td>
     </tr>
   </tbody>
 </table>
