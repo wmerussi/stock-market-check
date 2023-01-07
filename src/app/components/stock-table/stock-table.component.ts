@@ -7,13 +7,16 @@ import { getPriceDiff } from 'src/app/utils';
   templateUrl: './stock-table.component.html',
 })
 export class StockTableComponent {
-  public entries: Entry[] = [];
-
   @Input() stockData: StockData | undefined;
   @Input() days: number = 30;
 
+  public entries: Entry[] = [];
+  public currencySymbol: string | undefined;
+
   ngOnInit() {
     this.sortFilterEntries();
+
+    this.currencySymbol = this.stockData?.meta.currency;
   }
 
   private sortFilterEntries() {
