@@ -27,10 +27,14 @@ export class StockTableComponent {
 
     const lastEntries = itemKeys.slice(-this.days);
     const firstEntry = lastEntries[0];
+    console.log('lastEntries', lastEntries);
 
     this.entries = lastEntries.reduce(
       (items: Entry[], item: Item, index: number) => {
-        const { close, date_utc } = item;
+        const { close, date } = item;
+
+        const [month, day, year] = date.split('-').map((num: string) => +num);
+        const dateObj = new Date(year, month, day);
 
         const prevDayClose =
           index > 0 ? lastEntries[index - 1]?.close : undefined;
@@ -44,7 +48,7 @@ export class StockTableComponent {
 
         const entry: Entry = {
           id: index + 1,
-          date_utc,
+          date: dateObj,
           close,
           firstDayVar,
           prevDayVar,

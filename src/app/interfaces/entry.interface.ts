@@ -1,6 +1,6 @@
 export interface Entry {
   id: number;
-  date_utc: number;
+  date: Date;
   close: number;
   firstDayVar: number | undefined;
   prevDayVar: number | undefined;
