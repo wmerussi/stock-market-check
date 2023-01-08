@@ -81,6 +81,10 @@ export class StockChart implements OnInit {
           y: {
             min: this.minChartValue,
             max: this.maxChartValue,
+            title: {
+              display: true,
+              text: this.metaCurrency,
+            },
           },
         },
       },
