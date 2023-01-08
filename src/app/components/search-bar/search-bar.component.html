@@ -9,3 +9,7 @@
 
   <button (click)="search()" class="search-bar__button">Pesquisar</button>
 </div>
+
+<span *ngIf="!!message" class="message">
+  {{ message }}
+</span>

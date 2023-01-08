@@ -3,6 +3,10 @@
     <app-search-bar (onSearch)="search($event)"></app-search-bar>
   </header>
 
+  <span *ngIf="!!message" class="message">
+    {{ message }}
+  </span>
+
   <div class="app__chart">
     <app-stock-chart
       [metaCurrency]="metaCurrency"
@@ -16,8 +20,4 @@
       [setItems]="items"
     ></app-stock-table>
   </div>
-
-  <span *ngIf="!!message" class="app__message">
-    {{ message }}
-  </span>
 </div>
