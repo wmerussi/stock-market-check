@@ -1,0 +1,11 @@
+<div class="search-bar__wrapper">
+  <input
+    [(ngModel)]="searchString"
+    (keyup)="keyup($event)"
+    class="search-bar"
+    type="text"
+    placeholder="Pesquisar ação"
+  />
+
+  <button (click)="search()" class="search-bar__button">Pesquisar</button>
+</div>

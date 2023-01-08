@@ -1,0 +1,8 @@
+$radius-map: (
+  round: 5,
+  pill: 24,
+);
+
+@function border-radius($radius) {
+  @return #{map-get($radius-map, $radius)}px;
+}
