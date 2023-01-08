@@ -1,12 +1,16 @@
-<div *ngIf="!!items.length" class="container">
-  <div class="app-chart">
+<div *ngIf="!!items.length" class="app container">
+  <header class="app__header">
+    <h1>AAPL</h1>
+  </header>
+
+  <div class="app__chart">
     <app-stock-chart
       [metaCurrency]="metaCurrency"
       [items]="items"
     ></app-stock-chart>
   </div>
 
-  <div *ngIf="!!items.length" class="app-table">
+  <div *ngIf="!!items.length" class="app__table">
     <app-stock-table
       [metaCurrency]="metaCurrency"
       [items]="items"

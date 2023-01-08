@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Varela+Round&display=swap");
 
 $sizes: (
   small: 12,
@@ -6,6 +6,7 @@ $sizes: (
   large: 20,
   xlarge: 24,
   xxlarge: 28,
+  huge: 48,
 );
 
 @function font-size($size) {

@@ -56,7 +56,7 @@ export class StockChart implements OnInit {
         const chartDataset: ChartDataset = {
           ...BAR_COLOR[colorSchema],
           borderWidth: 1,
-          label: `${shortDate} - Close: ${close} - Min/Max`,
+          label: `${shortDate} - Close: ${this.metaCurrency} ${close} - Min/Max`,
           data: [[low, high]],
         };
 
