@@ -1,21 +1,29 @@
-<table>
-  <thead>
-    <tr>
-      <th>Dia</th>
-      <th>Data</th>
-      <th>Valor</th>
-      <th>Variação em relaçào a D-1</th>
-      <th>Variação em relação a primeira data</th>
-    </tr>
-  </thead>
+<div
+  *ngIf="(isLoading | async) && !items.length; else content"
+  class="skeleton skeleton-list"
+  style="--lines: 10; --c-w: 900px; --bg: #383838"
+></div>
 
-  <tbody>
-    <tr *ngFor="let entry of entries">
-      <td>{{ entry.id }}</td>
-      <td>{{ entry.date | date : "dd/MM/yy" }}</td>
-      <td>{{ entry.close | currency : metaCurrency : "symbol" }}</td>
-      <td>{{ (entry.firstDayVar | percent : "0.2") || "-" }}</td>
-      <td>{{ (entry.prevDayVar | percent : "0.2") || "-" }}</td>
-    </tr>
-  </tbody>
-</table>
+<ng-template #content>
+  <table *ngIf="!!entries.length">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Variação em relaçào a D-1</th>
+        <th>Variação em relação a primeira data</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let entry of entries">
+        <td>{{ entry.id }}</td>
+        <td>{{ entry.date | date : "dd/MM/yy" }}</td>
+        <td>{{ entry.close | currency : metaCurrency : "symbol" }}</td>
+        <td>{{ (entry.firstDayVar | percent : "0.2") || "-" }}</td>
+        <td>{{ (entry.prevDayVar | percent : "0.2") || "-" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

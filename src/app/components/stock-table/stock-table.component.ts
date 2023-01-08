@@ -1,20 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Entry, Item, Items, StockData } from 'src/app/interfaces';
+import { Component, Input } from '@angular/core';
+import { Entry, Item } from 'src/app/interfaces';
+import { LoadingService } from 'src/app/services/loading.service';
 import { apiDateToObj, getPriceDiff } from 'src/app/utils';
 
 @Component({
   selector: 'app-stock-table',
   templateUrl: './stock-table.component.html',
 })
-export class StockTableComponent implements OnInit {
+export class StockTableComponent {
   @Input() metaCurrency: string = '';
-  @Input() items: Item[] = [];
 
-  public entries: Entry[] = [];
-
-  ngOnInit() {
+  @Input() set setItems(items: Item[]) {
+    this.items = items;
     this.sortFilterEntries();
   }
+
+  public isLoading = this.loadingService.isLoading;
+
+  public items: Item[] = [];
+  public entries: Entry[] = [];
+
+  constructor(private loadingService: LoadingService) {}
 
   private sortFilterEntries() {
     const firstItem = this.items[0];
