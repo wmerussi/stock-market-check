@@ -37,22 +37,19 @@ export class StockChartComponent {
   buildChartDatasets() {
     this.chartDatasets = this.items.reduce(
       (chartDatasets: ChartDataset[], item: Item, index: number) => {
-        const { close, low, high, date } = item;
+        const { open, close, low, high, date } = item;
 
         const dateObj = apiDateToObj(date);
         const { day, month, year } = getDateFromObj(dateObj);
 
         const shortDate = `${day}/${month}/${year}`;
         this.chartLabels = this.chartLabels.concat(shortDate);
-
-        const prevItem = this.items[index - 1];
-        const colorSchema =
-          !!prevItem && close < prevItem.close ? 'negative' : 'positive';
+        const colorSchema = open > close ? 'negative' : 'positive';
 
         const chartDataset: ChartDataset = {
           ...BAR_COLOR[colorSchema],
           borderWidth: 1,
-          label: `${shortDate} - Close: ${this.metaCurrency} ${close} - Min/Max`,
+          label: `${shortDate} ${this.metaCurrency} - Open: ${open} - Close: ${close} - Min/Max`,
           data: [[low, high]],
         };
 
