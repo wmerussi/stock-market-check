@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { StockTableComponent } from './stock-table/stock-table.component';
 import { StockChart } from './stock-chart/stock-chart.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [StockChart, StockTableComponent],
+  declarations: [LoaderComponent, StockChart, StockTableComponent],
   imports: [CommonModule],
-  exports: [StockChart, StockTableComponent],
+  exports: [LoaderComponent, StockChart, StockTableComponent],
 })
 export class ComponentsModule {}
