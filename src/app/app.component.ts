@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppService } from './app.service';
 import { MessageEnum } from './enums/message.enum';
 import { Item, Items, Meta, StockData } from './interfaces';
@@ -8,21 +9,27 @@ import { LoadingService } from './services/loading.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   public metaCurrency: string = '';
   public items: Item[] = [];
   public message: string = '';
+
+  private subscription: Subscription | undefined;
 
   constructor(
     private loadingService: LoadingService,
     private service: AppService
   ) {}
 
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
+
   search(stockName: string) {
     this.resetData();
     this.loadingService.show();
 
-    this.service.stockGet(stockName).subscribe({
+    this.subscription = this.service.stockGet(stockName).subscribe({
       next: (data: StockData) => {
         const stockMeta: Meta | undefined = data?.meta;
         const stockItems: Items | undefined = data?.items;
@@ -48,6 +55,8 @@ export class AppComponent {
   }
 
   private resetData() {
+    this.subscription?.unsubscribe();
+
     this.metaCurrency = '';
     this.items = [];
     this.message = '';
