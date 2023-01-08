@@ -28,6 +28,7 @@ export class AppComponent {
         const stockItems: Items | undefined = data?.items;
 
         if (!data || !stockMeta || !stockItems) {
+          this.loadingService.hide();
           this.message = MessageEnum.NO_RESULT;
           return;
         }
