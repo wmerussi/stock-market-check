@@ -16,4 +16,8 @@
       [items]="items"
     ></app-stock-table>
   </div>
+
+  <span *ngIf="!!message" class="app__message">
+    {{ message }}
+  </span>
 </div>
