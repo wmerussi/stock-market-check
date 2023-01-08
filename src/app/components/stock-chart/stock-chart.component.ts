@@ -17,7 +17,7 @@ const BAR_COLOR = {
   selector: 'app-stock-chart',
   templateUrl: './stock-chart.component.html',
 })
-export class StockChart implements OnInit {
+export class StockChartComponent implements OnInit {
   @Input() metaCurrency: string = '';
   @Input() items: Item[] = [];
 

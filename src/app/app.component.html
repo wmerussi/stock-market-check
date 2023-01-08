@@ -1,9 +1,9 @@
-<div *ngIf="!!items.length" class="app container">
+<div class="app container">
   <header class="app__header">
-    <h1>AAPL</h1>
+    <app-search-bar (onSearch)="search($event)"></app-search-bar>
   </header>
 
-  <div class="app__chart">
+  <div *ngIf="!!items.length" class="app__chart">
     <app-stock-chart
       [metaCurrency]="metaCurrency"
       [items]="items"

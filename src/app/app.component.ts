@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppService } from './app.service';
-import { Entry, Item, Items, Meta, StockData } from './interfaces';
+import { Item, Items, Meta, StockData } from './interfaces';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public metaCurrency: string = '';
   public items: Item[] = [];
 
   constructor(private service: AppService) {}
 
-  ngOnInit() {
-    this.service.stockGet('AAPL').subscribe((data: StockData) => {
+  search(stockName: string) {
+    this.service.stockGet(stockName).subscribe((data: StockData) => {
       const stockMeta: Meta | undefined = data?.meta;
       const stockItems: Items | undefined = data?.items;
 
