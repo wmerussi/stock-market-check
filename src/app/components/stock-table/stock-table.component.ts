@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Entry, Item, Items, StockData } from 'src/app/interfaces';
-import { getPriceDiff } from 'src/app/utils';
+import { apiDateToObj, getPriceDiff } from 'src/app/utils';
 
 @Component({
   selector: 'app-stock-table',
@@ -22,9 +22,7 @@ export class StockTableComponent implements OnInit {
     this.entries = this.items.reduce(
       (items: Entry[], item: Item, index: number) => {
         const { close, date } = item;
-
-        const [month, day, year] = date.split('-').map((num: string) => +num);
-        const dateObj = new Date(year, month, day);
+        const dateObj = apiDateToObj(date);
 
         const prevDayClose =
           index > 0 ? this.items[index - 1]?.close : undefined;
