@@ -1,7 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Component, Input } from '@angular/core';
 
 import { ChartDataset, Item } from 'src/app/interfaces';
+import { LoadingService } from 'src/app/services/loading.service';
 import { apiDateToObj, getDateFromObj } from 'src/app/utils';
 
 const BAR_COLOR = {
@@ -17,31 +17,27 @@ const BAR_COLOR = {
   selector: 'app-stock-chart',
   templateUrl: './stock-chart.component.html',
 })
-export class StockChartComponent implements OnInit {
+export class StockChartComponent {
   @Input() metaCurrency: string = '';
-  @Input() items: Item[] = [];
 
-  @ViewChild('chartCanvas', { static: true }) chartCanvas:
-    | ElementRef
-    | undefined;
-
-  public chartLabels: string[] = [];
-  public minChartValue: number | undefined;
-  public maxChartValue: number | undefined;
-
-  constructor() {
-    Chart.register(...registerables);
+  @Input() set setItems(items: Item[]) {
+    this.resetData();
+    this.items = items;
+    this.buildChartDatasets();
   }
 
-  ngOnInit() {
-    if (!this.chartCanvas || !this.items.length) {
-      return;
-    }
+  public isLoading = this.loadingService.isLoading;
 
-    const datasets = this.items.reduce(
+  public items: Item[] = [];
+  public chartDatasets: ChartDataset[] = [];
+  public chartLabels: string[] = [];
+
+  constructor(private loadingService: LoadingService) {}
+
+  buildChartDatasets() {
+    this.chartDatasets = this.items.reduce(
       (chartDatasets: ChartDataset[], item: Item, index: number) => {
         const { close, low, high, date } = item;
-        this.setMinMaxChartValues(low, high);
 
         const dateObj = apiDateToObj(date);
         const { day, month, year } = getDateFromObj(dateObj);
@@ -64,40 +60,10 @@ export class StockChartComponent implements OnInit {
       },
       []
     );
-
-    new Chart(this.chartCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: [[]],
-        datasets,
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        scales: {
-          y: {
-            min: this.minChartValue,
-            max: this.maxChartValue,
-            title: {
-              display: true,
-              text: this.metaCurrency,
-            },
-          },
-        },
-      },
-    });
   }
 
-  private setMinMaxChartValues(low: number, high: number) {
-    if (!this.minChartValue || low < this.minChartValue) {
-      this.minChartValue = low;
-    }
-
-    if (!this.maxChartValue || high > this.maxChartValue) {
-      this.maxChartValue = high;
-    }
+  private resetData() {
+    this.items = [];
+    this.chartLabels = [];
   }
 }

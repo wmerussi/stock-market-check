@@ -1,22 +1,6 @@
 .stock-chart {
-  &__labels {
+  &__loader {
     display: flex;
     justify-content: center;
-    margin: {
-      top: space(medium);
-      left: -(space(medium));
-    }
-
-    font-family: "Roboto Mono", monospace;
-  }
-
-  &__label {
-    flex-shrink: 1;
-    width: 23px;
-
-    font-size: font-size(small);
-    color: color(light, darker);
-
-    transform: rotate(-45deg);
   }
 }

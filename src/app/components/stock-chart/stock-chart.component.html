@@ -1,7 +1,22 @@
-<canvas #chartCanvas></canvas>
+<div
+  *ngIf="(isLoading | async) && !items.length; else content"
+  class="stock-chart__loader"
+>
+  <div
+    class="skeleton skeleton-chart-columns"
+    style="--cols: 9; --col-w: 30px; --col-gap: 20px; --bg: #757575"
+  ></div>
 
-<ul class="stock-chart__labels">
-  <li *ngFor="let label of chartLabels" class="stock-chart__label">
-    {{ label }}
-  </li>
-</ul>
+  <div
+    class="skeleton skeleton-chart-columns"
+    style="--cols: 9; --col-w: 30px; --col-gap: 20px; --bg: #757575"
+  ></div>
+</div>
+
+<ng-template #content>
+  <app-chart
+    *ngIf="!!chartDatasets.length"
+    [chartDatasets]="chartDatasets"
+    [chartLabels]="chartLabels"
+  ></app-chart>
+</ng-template>

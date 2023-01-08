@@ -6,9 +6,11 @@ import { StockTableComponent } from './stock-table/stock-table.component';
 import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
+    ChartComponent,
     LoaderComponent,
     SearchBarComponent,
     StockChartComponent,
@@ -16,6 +18,7 @@ import { LoaderComponent } from './loader/loader.component';
   ],
   imports: [CommonModule, FormsModule],
   exports: [
+    ChartComponent,
     LoaderComponent,
     SearchBarComponent,
     StockChartComponent,
