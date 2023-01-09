@@ -1,4 +1,4 @@
-# StockMarketCheck
+# Stock Market Check
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5 and it was built to check the history of a stock market share.
 
@@ -8,7 +8,7 @@ This app is using the [Finance Yahoo](https://finance.yahoo.com/) api routed thr
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install` to install dependencies and `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
