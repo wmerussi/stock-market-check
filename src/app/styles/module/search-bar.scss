@@ -2,6 +2,7 @@
   width: 100%;
   background-color: transparent;
 
+  font-size: font-size(large);
   color: color(light, light);
   text-transform: uppercase;
   outline: none;
@@ -10,15 +11,14 @@
     position: relative;
 
     font-family: "Varela Round", sans-serif;
-    font-size: font-size(huge);
 
     &:after {
       position: absolute;
-      top: 100%;
+      top: 130%;
       left: 0;
 
       width: 100%;
-      height: 5px;
+      height: 2px;
 
       background-color: color(light, light);
       border-radius: 5px;
@@ -32,11 +32,26 @@
     right: 0;
     transform: translateY(-50%);
 
-    padding: space(small);
-    background-color: color(light, darker);
+    padding: space(xsmall);
+    background-color: color(dark, light);
     border-radius: border-radius(pill);
 
     font-size: font-size(base);
     color: color(light, dark);
+  }
+
+  @include media(desktop) {
+    font-size: font-size(huge);
+
+    &__wrapper {
+      &:after {
+        top: 110%;
+        height: 5px;
+      }
+    }
+
+    &__button {
+      padding: space(small);
+    }
   }
 }

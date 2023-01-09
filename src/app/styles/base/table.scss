@@ -22,6 +22,16 @@ td {
 
   + th,
   + td {
-    padding-left: space(medium);
+    padding-left: space(small);
+  }
+}
+
+@include media(tablet) {
+  th,
+  td {
+    + th,
+    + td {
+      padding-left: space(medium);
+    }
   }
 }

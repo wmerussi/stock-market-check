@@ -27,6 +27,11 @@ export class AppComponent implements OnDestroy {
 
   search(stockName: string) {
     this.resetData();
+
+    if (!stockName) {
+      return;
+    }
+
     this.loadingService.show();
 
     this.subscription = this.service.stockGet(stockName).subscribe({

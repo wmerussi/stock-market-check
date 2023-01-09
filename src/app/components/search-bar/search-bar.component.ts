@@ -17,7 +17,6 @@ export class SearchBarComponent {
 
     if (!this.searchString) {
       this.message = MessageEnum.EMPTY_INPUT;
-      return;
     }
 
     this.onSearch.emit(this.searchString);

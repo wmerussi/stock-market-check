@@ -1,5 +1,9 @@
 .message {
   display: block;
-  margin-top: space(large);
-  font-size: font-size(xxlarge);
+  margin-top: space(medium);
+
+  @include media(desktop) {
+    margin-top: space(large);
+    font-size: font-size(xxlarge);
+  }
 }

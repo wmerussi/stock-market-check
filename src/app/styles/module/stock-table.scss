@@ -1,0 +1,12 @@
+.stock-table {
+  th,
+  td {
+    &:first-of-type {
+      display: none;
+
+      @include media(tablet) {
+        display: block;
+      }
+    }
+  }
+}

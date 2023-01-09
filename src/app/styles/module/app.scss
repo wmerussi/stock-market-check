@@ -1,8 +1,38 @@
 .app {
-  padding: space(large) 0;
+  padding: {
+    top: space(medium);
+    bottom: space(medium);
+  }
 
   &__chart,
   &__table {
-    margin-top: space(xxlarge);
+    margin-top: space(medium);
+  }
+
+  &__chart {
+    display: none;
+  }
+
+  @include media(tablet) {
+    &__chart,
+    &__table {
+      margin-top: space(large);
+    }
+
+    &__chart {
+      display: block;
+    }
+  }
+
+  @include media(desktop) {
+    padding: {
+      top: space(large);
+      bottom: space(large);
+    }
+
+    &__chart,
+    &__table {
+      margin-top: space(xxlarge);
+    }
   }
 }

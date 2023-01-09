@@ -2,12 +2,25 @@ $container-size: 900px;
 
 .container {
   margin: 0 auto;
+
   padding: {
-    left: 8px;
-    right: 8px;
+    left: space(small);
+    right: space(small);
+  }
+
+  @include media(tablet) {
+    padding: {
+      left: space(medium);
+      right: space(medium);
+    }
   }
 
   @include media(desktop) {
+    padding: {
+      left: 0;
+      right: 0;
+    }
+
     width: $container-size;
     max-width: $container-size;
   }

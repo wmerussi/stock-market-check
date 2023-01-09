@@ -1,6 +1,6 @@
 .chart {
   &__labels {
-    display: flex;
+    display: none;
     justify-content: center;
     margin: {
       top: space(medium);
@@ -18,5 +18,11 @@
     color: color(light, darker);
 
     transform: rotate(-45deg);
+  }
+
+  @include media(desktop) {
+    &__labels {
+      display: flex;
+    }
   }
 }
