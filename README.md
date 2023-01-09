@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5 and it was built to check the history of a stock market share.
 
-Run the application, search for a stock market share and then check the chart and table of the result.
+Run the application, search for a stock market share and then check the chart and table for the result.
 
 This app is using the [Finance Yahoo](https://finance.yahoo.com/) api routed through [Rapidapi](https://rapidapi.com/) due Yahoo CORS issue.
 
